@@ -1,0 +1,46 @@
+{
+  "name": "claude-admob-unityads-cordova",
+  "version": "1.0.0",
+  "description": "Unity Ads mediation adapter for Google AdMob (community-admob-plus-cordova). Supports open bidding.",
+  "main": "plugin.xml",
+  "keywords": [
+    "cordova",
+    "admob",
+    "unity",
+    "unity-ads",
+    "mediation",
+    "adapter",
+    "bidding",
+    "android",
+    "ios",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Claude",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arcadesindo/claude-admob-unityads-cordova.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arcadesindo/claude-admob-unityads-cordova/issues"
+  },
+  "homepage": "https://github.com/arcadesindo/claude-admob-unityads-cordova",
+  "cordova": {
+    "id": "claude-admob-unityads-cordova",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "1.0.0": {
+        "cordova": ">=9.0.0",
+        "cordova-android": ">=9.0.0",
+        "cordova-ios": ">=6.0.0"
+      }
+    }
+  }
+}

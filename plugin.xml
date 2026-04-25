@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="claude-admob-unityads-cordova"
+        version="1.0.0">
+
+    <name>Claude AdMob Unity Ads Adapter</name>
+    <description>
+        Unity Ads mediation adapter for Google AdMob (community-admob-plus-cordova).
+        Injects the Unity Ads AdMob adapter SDK into Android and iOS builds.
+        Supports open bidding (in-app bidding) with adapter version 4.17.0.0+.
+        Must be used together with community-admob-plus-cordova.
+    </description>
+    <author>Claude</author>
+    <license>MIT</license>
+    <keywords>admob, unity ads, mediation, adapter, bidding, cordova</keywords>
+    <repo>https://github.com/arcadesindo/claude-admob-unityads-cordova</repo>
+    <issue>https://github.com/arcadesindo/claude-admob-unityads-cordova/issues</issue>
+
+    <!-- ============================================================ -->
+    <!-- Variables (set from Construct 3 plugin properties)           -->
+    <!-- ============================================================ -->
+
+    <!-- Android Unity Ads AdMob adapter version -->
+    <!-- Format: {UnityAds SDK version}.{adapter patch} -->
+    <!-- e.g. 4.17.0.0 = Unity Ads SDK 4.17.0 + adapter patch 0    -->
+    <preference name="ANDROID_ADAPTER_VERSION" default="4.17.0.0" />
+
+    <!-- iOS adapter version (CocoaPod GoogleMobileAdsMediationUnity) -->
+    <preference name="IOS_ADAPTER_VERSION" default="4.17.0.0" />
+
+    <!-- ============================================================ -->
+    <!-- Engines                                                       -->
+    <!-- ============================================================ -->
+    <engines>
+        <engine name="cordova" version=">=9.0.0" />
+        <engine name="cordova-android" version=">=9.0.0" />
+        <engine name="cordova-ios" version=">=6.0.0" />
+    </engines>
+
+    <!-- ============================================================ -->
+    <!-- Android                                                       -->
+    <!-- ============================================================ -->
+    <platform name="android">
+
+        <!--
+            Inject Unity Ads mediation adapter into app-level build.gradle.
+
+            Google's official Maven dependency (from developers.google.com/admob/android/mediation/unity):
+              implementation("com.google.ads.mediation:unity:4.17.0.0")
+
+            The Unity Ads SDK itself is a transitive dependency of the adapter,
+            so we do NOT need to add com.unity3d.ads:unity-ads separately.
+            Gradle will resolve it automatically.
+        -->
+        <framework src="com.google.ads.mediation:unity:$ANDROID_ADAPTER_VERSION" />
+
+        <!--
+            Ensure Google's Maven repository is available.
+            community-admob-plus-cordova already adds this, but we add it
+            defensively in case someone uses this adapter standalone.
+        -->
+        <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
+
+    </platform>
+
+    <!-- ============================================================ -->
+    <!-- iOS                                                           -->
+    <!-- ============================================================ -->
+    <platform name="ios">
+
+        <!--
+            CocoaPod: GoogleMobileAdsMediationUnity
+            Official pod maintained by AdMob (cocoapods.org/pods/GoogleMobileAdsMediationUnity).
+            This pod includes both the Unity Ads SDK and the AdMob adapter.
+        -->
+        <pod name="GoogleMobileAdsMediationUnity" version="~> $IOS_ADAPTER_VERSION" />
+
+    </platform>
+
+</plugin>

@@ -1,0 +1,18 @@
+// build-extras.gradle
+// Claude AdMob Unity Ads Adapter - Android build helper
+//
+// Ensures Google's Maven repository is available so Gradle can
+// resolve com.google.ads.mediation:unity and its dependencies.
+
+android {
+    // Unity Ads adapter requires Java 8+ features
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
